@@ -1,0 +1,16 @@
+<form (ngSubmit)="submit()">
+  <div *ngFor="let player of game.players">
+    <label [for]="player.id">
+      {{ player.name }}
+      <input
+        type="number"
+        [id]="player.id"
+        [(ngModel)]="scores[player.id]"
+        name="{{ player.id }}"
+        required
+      />
+    </label>
+  </div>
+
+  <button type="submit">Runde hinzufügen</button>
+</form>

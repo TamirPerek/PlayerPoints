@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingHarness } from '@angular/router/testing';
 import { App } from './app';
 
 describe('App', () => {
@@ -14,10 +15,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
-    const fixture = TestBed.createComponent(App);
+  it('should render navigation', async () => {
+    const harness = await RouterTestingHarness.create();
+    const fixture = harness.fixture;
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, PlayerPoints');
+    expect(compiled.querySelector('.topbar a')?.textContent).toContain('PlayerPoints');
   });
 });

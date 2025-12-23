@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --fg: #0f172a;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --border: #e5e7eb;
+  --topbar-bg: #0f172a;
+  --topbar-fg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0b1221;
+    --surface: #111827;
+    --fg: #e5e7eb;
+    --muted: #94a3b8;
+    --primary: #60a5fa;
+    --border: #1f2937;
+    --topbar-bg: #0b1221;
+    --topbar-fg: #e5e7eb;
+  }
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--fg); }
+a { color: inherit; }
+button { font: inherit; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 1rem; }
+.card { border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+
+@media (min-width: 720px) {
+  .container { padding: 1.5rem; }
+}

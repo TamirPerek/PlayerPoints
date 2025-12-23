@@ -1,0 +1,18 @@
+.shell { min-height: 100vh; background: var(--bg); color: var(--fg); }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--topbar-bg); color: var(--topbar-fg); gap: 0.75rem; flex-wrap: wrap; }
+.topbar a { color: inherit; text-decoration: none; font-weight: 600; }
+.links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.page { padding: 1.5rem; }
+body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; }
+
+@media (max-width: 640px) {
+  .topbar { justify-content: center; text-align: center; }
+  .links { width: 100%; justify-content: center; gap: 0.75rem; }
+  .page { padding: 1rem; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: #0b1221;
+  }
+}
