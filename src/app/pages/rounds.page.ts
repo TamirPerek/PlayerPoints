@@ -25,7 +25,7 @@ import { GameService } from '../services/games';
             <input
               type="number"
               inputmode="decimal"
-              pattern="[0-9]*"
+              pattern="-?[0-9]*"
               [id]="player.id"
               [(ngModel)]="scores[player.id]"
               name="score-{{ player.id }}"
