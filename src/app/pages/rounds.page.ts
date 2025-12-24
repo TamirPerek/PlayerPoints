@@ -57,6 +57,16 @@ import { GameService } from '../services/games';
               </div>
             </div>
 
+            <div class="round-totals" *ngIf="editingRoundId !== round.id">
+              <div class="round-totals-title">Zwischenstand nach Runde {{ i + 1 }}</div>
+              <div class="round-scores">
+                <div *ngFor="let player of game.players">
+                  <strong>{{ player.name }}: </strong>
+                  <span>{{ partialTotals(i)[player.id] }}</span>
+                </div>
+              </div>
+            </div>
+
             <form
               *ngIf="editingRoundId === round.id"
               class="edit-form"
@@ -107,6 +117,8 @@ import { GameService } from '../services/games';
       .edit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.6rem; }
       .edit-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
       .secondary { background: #fff; color: #2563eb; border-color: #cbd5e1; }
+      .round-totals { margin-top: 0.5rem; border-top: 1px dashed #e5e7eb; padding-top: 0.5rem; display: grid; gap: 0.35rem; }
+      .round-totals-title { font-weight: 600; color: #475569; }
 
       @media (max-width: 640px) {
         .page { padding: 1rem; gap: 0.85rem; }
@@ -129,7 +141,9 @@ import { GameService } from '../services/games';
         .link { color: #60a5fa; }
         .link-btn { color: #60a5fa; }
         button { background: #2563eb; border-color: #1d4ed8; }
-        .secondary { background: transparent; color: #cbd5e1; }
+        .secondary { background: transparent; color: #cbd5e1; border-color: #374151; }
+        .round-totals { border-color: #1f2937; }
+        .round-totals-title { color: #cbd5e1; }
       }
     `,
   ],
@@ -176,5 +190,19 @@ export class RoundsPage {
   cancelEdit() {
     this.editingRoundId = null;
     this.editBuffer = {};
+  }
+
+  partialTotals(index: number): Record<string, number> {
+    const totals: Record<string, number> = Object.fromEntries(
+      this.game.players.map((p) => [p.id, 0])
+    );
+    for (let i = 0; i <= index; i++) {
+      const round = this.game.rounds[i];
+      if (!round) continue;
+      for (const player of this.game.players) {
+        totals[player.id] += round.scores[player.id] ?? 0;
+      }
+    }
+    return totals;
   }
 }
