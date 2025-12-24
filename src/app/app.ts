@@ -9,11 +9,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     <div class="shell">
       <nav class="topbar">
         <a routerLink="/">PlayerPoints</a>
-        <div class="links">
-          <a routerLink="/players">Spieler</a>
-          <a routerLink="/rounds">Runden</a>
-          <a routerLink="/results">Ergebnis</a>
-        </div>
       </nav>
       <router-outlet></router-outlet>
     </div>
