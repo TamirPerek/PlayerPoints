@@ -30,6 +30,13 @@ export class GameService {
     this.save();
   }
 
+  updatePlayerName(id: string, name: string) {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    this.players = this.players.map((p) => (p.id === id ? { ...p, name: trimmed } : p));
+    this.save();
+  }
+
   addRound(scores: Record<string, number>) {
     if (!this.players.length) {
       return;
@@ -41,6 +48,13 @@ export class GameService {
       sanitized[player.id] = Number.isFinite(value) ? value : 0;
     }
     this.rounds = [...this.rounds, { id: crypto.randomUUID(), scores: sanitized }];
+    this.save();
+  }
+
+  updateRoundScores(roundId: string, scores: Record<string, number>) {
+    this.rounds = this.rounds.map((round) =>
+      round.id === roundId ? { ...round, scores: { ...scores } } : round
+    );
     this.save();
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -28,10 +28,33 @@ import { GameService } from '../services/games';
 
       <section class="list card" *ngIf="game.players.length; else empty">
         <div class="list-row" *ngFor="let player of game.players">
-          <div>
+          <div class="row-content" *ngIf="editingId !== player.id; else editRow">
             <strong>{{ player.name }}</strong>
           </div>
-          <button type="button" (click)="remove(player.id)">Entfernen</button>
+          <ng-template #editRow>
+            <label class="field inline">
+              <input
+                type="text"
+                [(ngModel)]="editName"
+                name="editName-{{ player.id }}"
+                required
+              />
+            </label>
+          </ng-template>
+          <div class="row-actions">
+            <button *ngIf="editingId !== player.id" type="button" class="secondary" (click)="startEdit(player)">
+              Bearbeiten
+            </button>
+            <button *ngIf="editingId !== player.id" type="button" (click)="remove(player.id)">
+              Entfernen
+            </button>
+            <button *ngIf="editingId === player.id" type="button" (click)="saveEdit(player.id)">
+              Speichern
+            </button>
+            <button *ngIf="editingId === player.id" type="button" class="secondary" (click)="cancelEdit()">
+              Abbrechen
+            </button>
+          </div>
         </div>
       </section>
       <ng-template #empty>
@@ -53,27 +76,51 @@ import { GameService } from '../services/games';
       .list { display: grid; gap: 0.5rem; }
       .list-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9; }
       .list-row:last-child { border-bottom: none; }
+      .row-content { flex: 1; min-width: 0; }
+      .row-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+      .secondary { background: #fff; color: #2563eb; border-color: #cbd5e1; }
+      .inline input { width: 100%; }
 
       @media (max-width: 640px) {
         .page { padding: 1rem; gap: 0.85rem; }
         button { width: 100%; text-align: center; }
         .page-header { justify-content: space-between; }
+        .row-actions { width: 100%; }
+        .row-actions button { flex: 1 1 48%; }
       }
       @media (prefers-color-scheme: dark) {
         .card {
           background: #0b1221;
         }
+        .secondary { background: transparent; color: #60a5fa; border-color: #1f2937; }
       }
     `,
   ],
 })
 export class PlayersPage {
   protected name = '';
+  protected editingId: string | null = null;
+  protected editName = '';
   protected readonly game = inject(GameService);
 
   addPlayer() {
     this.game.addPlayer(this.name);
     this.name = '';
+  }
+
+  startEdit(player: { id: string; name: string }) {
+    this.editingId = player.id;
+    this.editName = player.name;
+  }
+
+  saveEdit(id: string) {
+    this.game.updatePlayerName(id, this.editName);
+    this.cancelEdit();
+  }
+
+  cancelEdit() {
+    this.editingId = null;
+    this.editName = '';
   }
 
   remove(id: string) {
