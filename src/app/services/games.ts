@@ -63,6 +63,11 @@ export class GameService {
     this.save();
   }
 
+  resetRounds() {
+    this.rounds = [];
+    this.save();
+  }
+
   getTotalScore(playerId: string): number {
     return this.rounds.reduce(
       (sum, round) => sum + (round.scores[playerId] ?? 0),

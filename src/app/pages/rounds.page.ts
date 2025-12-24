@@ -40,7 +40,12 @@ import { GameService } from '../services/games';
       </ng-template>
 
       <section class="card" *ngIf="game.rounds.length">
-        <h2>Erfasste Runden</h2>
+        <div class="section-head">
+          <h2>Erfasste Runden</h2>
+          <button class="link-btn danger" type="button" (click)="clearRounds()">
+            Runden löschen
+          </button>
+        </div>
         <div class="round-list">
           <div class="round" *ngFor="let round of game.rounds; index as i">
             <div class="round-header">
@@ -126,6 +131,7 @@ import { GameService } from '../services/games';
       .secondary { background: #fff; color: #2563eb; border-color: #cbd5e1; }
       .round-totals { margin-top: 0.5rem; border-top: 1px dashed #e5e7eb; padding-top: 0.5rem; display: grid; gap: 0.35rem; }
       .round-totals-title { font-weight: 600; color: #475569; }
+      .section-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
 
       @media (max-width: 640px) {
         .page { padding: 1rem; gap: 0.85rem; }
@@ -205,6 +211,11 @@ export class RoundsPage {
     if (this.editingRoundId === roundId) {
       this.cancelEdit();
     }
+  }
+
+  clearRounds() {
+    this.game.resetRounds();
+    this.cancelEdit();
   }
 
   partialTotals(index: number): Record<string, number> {
