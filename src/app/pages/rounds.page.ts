@@ -45,9 +45,14 @@ import { GameService } from '../services/games';
           <div class="round" *ngFor="let round of game.rounds; index as i">
             <div class="round-header">
               <span>Runde {{ i + 1 }}</span>
-              <button class="link-btn" type="button" (click)="toggleEdit(round.id)">
-                {{ editingRoundId === round.id ? 'Abbrechen' : 'Bearbeiten' }}
-              </button>
+              <div class="round-actions">
+                <button class="link-btn" type="button" (click)="toggleEdit(round.id)">
+                  {{ editingRoundId === round.id ? 'Abbrechen' : 'Bearbeiten' }}
+                </button>
+                <button class="link-btn danger" type="button" (click)="deleteRound(round.id)">
+                  Löschen
+                </button>
+              </div>
             </div>
 
             <div class="round-scores" *ngIf="editingRoundId !== round.id">
@@ -111,8 +116,10 @@ import { GameService } from '../services/games';
       .round-list { display: grid; gap: 0.75rem; margin-top: 0.5rem; }
       .round { border: 1px solid #f1f5f9; border-radius: 8px; padding: 0.75rem; background: #f8fafc; }
       .round-header { display: flex; align-items: center; justify-content: space-between; font-weight: 600; margin-bottom: 0.35rem; gap: 0.5rem; }
-      .round-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.35rem; }
+      .round-actions { display: flex; gap: 0.5rem; align-items: center; }
       .link-btn { background: none; border: none; color: #2563eb; font-weight: 600; cursor: pointer; padding: 0; }
+      .danger { color: #b91c1c; }
+      .round-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.35rem; }
       .edit-form { display: grid; gap: 0.75rem; }
       .edit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.6rem; }
       .edit-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -142,6 +149,7 @@ import { GameService } from '../services/games';
         .link-btn { color: #60a5fa; }
         button { background: #2563eb; border-color: #1d4ed8; }
         .secondary { background: transparent; color: #cbd5e1; border-color: #374151; }
+        .danger { color: #fca5a5; }
         .round-totals { border-color: #1f2937; }
         .round-totals-title { color: #cbd5e1; }
       }
@@ -190,6 +198,13 @@ export class RoundsPage {
   cancelEdit() {
     this.editingRoundId = null;
     this.editBuffer = {};
+  }
+
+  deleteRound(roundId: string) {
+    this.game.removeRound(roundId);
+    if (this.editingRoundId === roundId) {
+      this.cancelEdit();
+    }
   }
 
   partialTotals(index: number): Record<string, number> {

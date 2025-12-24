@@ -58,6 +58,11 @@ export class GameService {
     this.save();
   }
 
+  removeRound(roundId: string) {
+    this.rounds = this.rounds.filter((round) => round.id !== roundId);
+    this.save();
+  }
+
   getTotalScore(playerId: string): number {
     return this.rounds.reduce(
       (sum, round) => sum + (round.scores[playerId] ?? 0),
