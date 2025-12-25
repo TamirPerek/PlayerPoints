@@ -7,7 +7,7 @@
     <a routerLink="/" class="link">Zurück</a>
   </header>
 
-  <section class="card" *ngIf="game.players.length; else noPlayers">
+  <app-card *ngIf="game.players.length; else noPlayers">
     <form class="round-form" (ngSubmit)="addRound()">
       <div class="field" *ngFor="let player of game.players">
         <label [for]="player.id">{{ player.name }}</label>
@@ -21,14 +21,14 @@
           required
         />
       </div>
-      <button type="submit">Runde hinzufügen</button>
+      <app-button type="submit">Runde hinzufügen</app-button>
     </form>
-  </section>
+  </app-card>
   <ng-template #noPlayers>
     <div class="card muted">Lege zuerst Spieler an.</div>
   </ng-template>
 
-  <section class="card" *ngIf="game.rounds.length">
+  <app-card *ngIf="game.rounds.length">
     <div class="section-head">
       <h2>Erfasste Runden</h2>
       <button class="link-btn danger" type="button" (click)="clearRounds()">
@@ -92,5 +92,5 @@
         </form>
       </div>
     </div>
-  </section>
+  </app-card>
 </main>

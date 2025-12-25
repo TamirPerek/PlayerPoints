@@ -7,7 +7,7 @@
     <a routerLink="/" class="link">Zurück</a>
   </header>
 
-  <section class="card" *ngIf="game.players.length; else empty">
+  <app-card *ngIf="game.players.length; else empty">
     <h2>Scoreboard</h2>
     <div class="scores">
       <div class="score-row" *ngFor="let player of sortedPlayers()">
@@ -20,8 +20,8 @@
     <div class="winner" *ngIf="winner() as w">
       <p>Sieger: <strong>{{ w.player.name }}</strong> mit {{ w.score }} Punkten</p>
     </div>
-    <button type="button" (click)="reset()">Neues Spiel</button>
-  </section>
+    <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">Neues Spiel</app-button>
+  </app-card>
   <ng-template #empty>
     <div class="card muted">Keine Spieler/Runden vorhanden.</div>
   </ng-template>

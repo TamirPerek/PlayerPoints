@@ -3,11 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../services/games';
+import { CardComponent} from '../../components/card/card.component';
+import {ButtonComponent} from '../../components/button/button.component';
 
 @Component({
   selector: 'app-rounds-page',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule],
+  imports: [FormsModule, RouterLink, CommonModule, CardComponent, ButtonComponent],
   templateUrl: './rounds.page.html',
   styleUrls: ['./rounds.page.css'],
 })

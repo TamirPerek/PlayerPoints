@@ -7,44 +7,40 @@
     <a routerLink="/" class="link">Zurück</a>
   </header>
 
-  <form class="card" (ngSubmit)="addPlayer()">
-    <label class="field">
-      <span>Name</span>
-      <input type="text" [(ngModel)]="name" name="playerName" required />
-    </label>
-    <button type="submit">Hinzufügen</button>
-  </form>
+  <app-card>
+    <form (ngSubmit)="addPlayer()">
+      <label class="field">
+        <span>Name</span>
+        <input type="text" [(ngModel)]="name" name="playerName" required />
+        <app-button buttonClass="" type="submit">Hinzufügen</app-button>
+      </label>
+    </form>
+  </app-card>
 
-  <section class="list card" *ngIf="game.players.length; else empty">
+  <app-card>
     <div class="list-row" *ngFor="let player of game.players">
       <div class="row-content" *ngIf="editingId !== player.id; else editRow">
         <strong>{{ player.name }}</strong>
       </div>
       <ng-template #editRow>
-          <input
-            type="text"
-            [(ngModel)]="editName"
-            name="editName-{{ player.id }}"
-            required
-          />
+        <input
+          type="text"
+          [(ngModel)]="editName"
+          name="editName-{{ player.id }}"
+          required
+        />
       </ng-template>
       <div class="row-actions">
-        <button *ngIf="editingId !== player.id" type="button" class="secondary" (click)="startEdit(player)">
-          Bearbeiten
-        </button>
-        <button *ngIf="editingId !== player.id" type="button" (click)="remove(player.id)">
-          Entfernen
-        </button>
-        <button *ngIf="editingId === player.id" type="button" (click)="saveEdit(player.id)">
-          Speichern
-        </button>
-        <button *ngIf="editingId === player.id" type="button" class="secondary" (click)="cancelEdit()">
-          Abbrechen
-        </button>
+        <app-button *ngIf="editingId !== player.id" buttonClass="secondary" (click)="startEdit(player)" (keydown)="startEdit(player)">Bearbeiten</app-button>
+        <app-button *ngIf="editingId !== player.id" buttonClass="" (click)="remove(player.id)" (keydown)="remove(player.id)">Entfernen</app-button>
+        <app-button *ngIf="editingId === player.id" buttonClass="" (click)="saveEdit(player.id)" (keydown)="saveEdit(player.id)">Speichern</app-button>
+        <app-button *ngIf="editingId === player.id" buttonClass="secondary" (click)="cancelEdit()" (keydown)="cancelEdit()">Abbrechen</app-button>
       </div>
     </div>
-  </section>
+  </app-card>
+
   <ng-template #empty>
     <div class="card muted">Noch keine Spieler angelegt.</div>
   </ng-template>
+
 </main>

@@ -3,11 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../services/games';
+import { ButtonComponent } from '../../components/button/button.component';
+import { CardComponent} from '../../components/card/card.component';
 
 @Component({
   selector: 'app-players-page',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule],
+  imports: [FormsModule, RouterLink, CommonModule, ButtonComponent, CardComponent],
   templateUrl: 'players.page.html',
   styleUrls: ['players.page.css'],
 })

@@ -13,4 +13,7 @@ export class DashboardPage {
   private readonly game = inject(GameService);
   protected readonly playerCount = computed(() => this.game.players.length);
   protected readonly roundCount = computed(() => this.game.rounds.length);
+  start() {
+    console.log('Dashboard start triggered');
+  }
 }
