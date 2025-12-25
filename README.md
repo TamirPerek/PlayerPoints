@@ -2,6 +2,10 @@
 
 Lightweight PWA to track points across rounds in analog card games. Add players, record per-round scores (including negatives), edit or delete rounds, and see live standings and winners.
 
+## Hosted
+
+The app is hosted at: https://tamirperek.github.io/PlayerPoints/
+
 ## Features
 - Create and rename players; remove players as needed
 - Add rounds with numeric inputs optimized for mobile (numeric keyboard, negative numbers allowed)
