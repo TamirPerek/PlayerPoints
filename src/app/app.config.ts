@@ -9,7 +9,7 @@ import { routes } from './app.routes';
 import { provideServiceWorker } from '@angular/service-worker';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/', '.json');
+  return new TranslateHttpLoader(http, './', '.json');
 }
 
 export const appConfig: ApplicationConfig = {
