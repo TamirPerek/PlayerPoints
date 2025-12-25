@@ -1,0 +1,28 @@
+<main class="page">
+  <header class="page-header">
+    <div>
+      <h1>Ergebnis</h1>
+      <p>Summen und Sieger.</p>
+    </div>
+    <a routerLink="/" class="link">Zurück</a>
+  </header>
+
+  <section class="card" *ngIf="game.players.length; else empty">
+    <h2>Scoreboard</h2>
+    <div class="scores">
+      <div class="score-row" *ngFor="let player of sortedPlayers()">
+        <div>
+          <strong>{{ player.name }}</strong>
+        </div>
+        <div class="score-value">{{ totals()[player.id] }}</div>
+      </div>
+    </div>
+    <div class="winner" *ngIf="winner() as w">
+      <p>Sieger: <strong>{{ w.player.name }}</strong> mit {{ w.score }} Punkten</p>
+    </div>
+    <button type="button" (click)="reset()">Neues Spiel</button>
+  </section>
+  <ng-template #empty>
+    <div class="card muted">Keine Spieler/Runden vorhanden.</div>
+  </ng-template>
+</main>

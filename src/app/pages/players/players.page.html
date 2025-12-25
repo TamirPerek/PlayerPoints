@@ -1,0 +1,52 @@
+<main class="page">
+  <header class="page-header">
+    <div>
+      <h1>Spieler</h1>
+      <p>Lege Spieler an oder entferne sie.</p>
+    </div>
+    <a routerLink="/" class="link">Zurück</a>
+  </header>
+
+  <form class="card" (ngSubmit)="addPlayer()">
+    <label class="field">
+      <span>Name</span>
+      <input type="text" [(ngModel)]="name" name="playerName" required />
+    </label>
+    <button type="submit">Hinzufügen</button>
+  </form>
+
+  <section class="list card" *ngIf="game.players.length; else empty">
+    <div class="list-row" *ngFor="let player of game.players">
+      <div class="row-content" *ngIf="editingId !== player.id; else editRow">
+        <strong>{{ player.name }}</strong>
+      </div>
+      <ng-template #editRow>
+        <label class="field inline">
+          <input
+            type="text"
+            [(ngModel)]="editName"
+            name="editName-{{ player.id }}"
+            required
+          />
+        </label>
+      </ng-template>
+      <div class="row-actions">
+        <button *ngIf="editingId !== player.id" type="button" class="secondary" (click)="startEdit(player)">
+          Bearbeiten
+        </button>
+        <button *ngIf="editingId !== player.id" type="button" (click)="remove(player.id)">
+          Entfernen
+        </button>
+        <button *ngIf="editingId === player.id" type="button" (click)="saveEdit(player.id)">
+          Speichern
+        </button>
+        <button *ngIf="editingId === player.id" type="button" class="secondary" (click)="cancelEdit()">
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  </section>
+  <ng-template #empty>
+    <div class="card muted">Noch keine Spieler angelegt.</div>
+  </ng-template>
+</main>

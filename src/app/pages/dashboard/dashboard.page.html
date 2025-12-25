@@ -1,0 +1,21 @@
+<main class="page">
+  <header>
+    <h1>PlayerPoints</h1>
+    <p>Verwalte Spieler, erfasse Rundenpunkte und sieh das Ergebnis.</p>
+  </header>
+
+  <section class="cards">
+    <a routerLink="/players" class="card">
+      <h2>Spieler</h2>
+      <p>{{ playerCount() }} Spieler angelegt</p>
+    </a>
+    <a routerLink="/rounds" class="card" [class.disabled]="!playerCount()">
+      <h2>Runden</h2>
+      <p>{{ roundCount() }} Runden erfasst</p>
+    </a>
+    <a routerLink="/results" class="card" [class.disabled]="!roundCount()">
+      <h2>Ergebnis</h2>
+      <p>Aktuellen Sieger ansehen</p>
+    </a>
+  </section>
+</main>
