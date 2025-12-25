@@ -1,0 +1,26 @@
+<main class="page">
+  <app-header
+    [title]="'results.title' | translate"
+    [subtitle]="'results.subtitle' | translate"
+    [showBackButton]="true">
+  </app-header>
+
+  <app-card *ngIf="game.players.length; else empty">
+    <h2>{{'results.scoreboard' | translate}}</h2>
+    <div class="scores">
+      <div class="score-row" *ngFor="let player of sortedPlayers()">
+        <div>
+          <strong>{{ player.name }}</strong>
+        </div>
+        <div class="score-value">{{ totals()[player.id] }}</div>
+      </div>
+    </div>
+    <div class="winner" *ngIf="winner() as w">
+      <p>{{'results.winner' | translate: { name: w.player.name, score: w.score} }}</p>
+    </div>
+    <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">{{'results.newGame' | translate}}</app-button>
+  </app-card>
+  <ng-template #empty>
+    <div class="card muted">{{'results.empty' | translate}}</div>
+  </ng-template>
+</main>

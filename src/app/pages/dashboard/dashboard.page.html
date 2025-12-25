@@ -1,0 +1,22 @@
+<main class="page">
+  <app-header
+    [title]="'dashboard.headline' | translate"
+    [subtitle]="'dashboard.sub' | translate"
+    [showBackButton]="false"
+  ></app-header>
+
+  <section class="cards">
+    <a routerLink="/players" class="card">
+      <h2>{{ 'dashboard.players' | translate }}</h2>
+      <p>{{ 'dashboard.playersCount' | translate:{ count: playerCount() } }}</p>
+    </a>
+    <a routerLink="/rounds" class="card" [class.disabled]="!playerCount()">
+      <h2>{{ 'dashboard.rounds' | translate }}</h2>
+      <p>{{ 'dashboard.roundsCount' | translate:{ count: roundCount() } }}</p>
+    </a>
+    <a routerLink="/results" class="card" [class.disabled]="!roundCount() || !playerCount()">
+      <h2>{{ 'dashboard.results' | translate }}</h2>
+      <p>{{ 'dashboard.viewWinner' | translate }}</p>
+    </a>
+  </section>
+</main>

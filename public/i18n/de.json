@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "PlayerPoints",
+    "back": "Zurück"
+  },
+  "dashboard": {
+    "headline": "PlayerPoints",
+    "sub": "Verwalte Spieler, erfasse Rundenpunkte und sieh das Ergebnis.",
+    "players": "Spieler",
+    "playersCount": "{{count}} Spieler angelegt",
+    "rounds": "Runden",
+    "roundsCount": "{{count}} Runden erfasst",
+    "results": "Ergebnis",
+    "viewWinner": "Aktuellen Sieger ansehen"
+  },
+  "players": {
+    "title": "Spieler",
+    "subtitle": "Lege Spieler an oder entferne sie.",
+    "name": "Name",
+    "add": "Hinzufügen",
+    "edit": "Bearbeiten",
+    "remove": "Entfernen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "empty": "Noch keine Spieler angelegt."
+  },
+  "rounds": {
+    "title": "Runden",
+    "title2": "Erfasste Runden",
+    "subtitle": "Punkte je Runde erfassen.",
+    "addRound": "Runde hinzufügen",
+    "deleteRounds": "Runden löschen",
+    "round": "Runde",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "noPlayers": "Lege zuerst Spieler an.",
+    "totalsAfter": "Zwischenstand nach Runde"
+  },
+  "results": {
+    "title": "Ergebnis",
+    "subtitle": "Summen und Sieger.",
+    "scoreboard": "Scoreboard",
+    "winner": "Sieger: {{name}} mit {{score}} Punkten",
+    "empty": "Keine Spieler/Runden vorhanden.",
+    "newGame": "Neues Spiel"
+  }
+}
+

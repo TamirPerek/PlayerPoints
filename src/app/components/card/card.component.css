@@ -1,0 +1,6 @@
+.card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; background: #fff; }
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: var(--surface);
+  }
+}

@@ -1,0 +1,94 @@
+<main class="page">
+  <app-header
+    [title]="'rounds.title' | translate"
+    [subtitle]="'rounds.subtitle' | translate"
+    [showBackButton]="true">
+  </app-header>
+
+  <app-card *ngIf="game.players.length; else noPlayers">
+    <form class="round-form" (ngSubmit)="addRound()">
+      <div class="field" *ngFor="let player of game.players">
+        <label [for]="player.id">{{ player.name }}</label>
+        <input
+          type="number"
+          inputmode="text"
+          pattern="-?[0-9]+"
+          [id]="player.id"
+          [(ngModel)]="scores[player.id]"
+          name="score-{{ player.id }}"
+          required
+        />
+      </div>
+      <app-button type="submit">{{'rounds.addRound' | translate}}</app-button>
+    </form>
+  </app-card>
+  <ng-template #noPlayers>
+    <div class="card muted">{{'rounds.noPlayers' | translate}}</div>
+  </ng-template>
+
+  <app-card *ngIf="game.rounds.length">
+    <div class="section-head">
+      <h2>{{'rounds.title2' | translate}}</h2>
+      <button class="link-btn danger" type="button" (click)="clearRounds()">
+        {{'rounds.deleteRounds' | translate}}
+      </button>
+    </div>
+    <div class="round-list">
+      <div class="round" *ngFor="let round of game.rounds; index as i">
+        <div class="round-header">
+          <span>{{'rounds.round' | translate}} {{ i + 1 }}</span>
+          <div class="round-actions">
+            <button class="link-btn" type="button" (click)="toggleEdit(round.id)">
+              {{ editingRoundId === round.id ?  ('rounds.cancel' | translate) : 'rounds.edit' | translate}}
+            </button>
+            <button class="link-btn danger" type="button" (click)="deleteRound(round.id)">
+              {{'rounds.delete' | translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="round-scores" *ngIf="editingRoundId !== round.id">
+          <div *ngFor="let player of game.players">
+            <strong>{{ player.name }}: </strong>
+            <span>{{ round.scores[player.id] ?? 0 }}</span>
+          </div>
+        </div>
+
+        <div class="round-totals" *ngIf="editingRoundId !== round.id">
+          <div class="round-totals-title">{{'rounds.totalsAfter' | translate}} {{ i + 1 }}</div>
+          <div class="round-scores">
+            <div *ngFor="let player of game.players">
+              <strong>{{ player.name }}: </strong>
+              <span>{{ partialTotals(i)[player.id] }}</span>
+            </div>
+          </div>
+        </div>
+
+        <form
+          *ngIf="editingRoundId === round.id"
+          class="edit-form"
+          (ngSubmit)="saveEdit(round.id)"
+        >
+          <div class="edit-grid">
+            <div class="field" *ngFor="let player of game.players">
+              <label [for]="'edit-' + round.id + '-' + player.id">{{ player.name }}</label>
+              <input
+                type="number"
+                inputmode="text"
+                pattern="-?[0-9]*"
+                [id]="'edit-' + round.id + '-' + player.id"
+                [(ngModel)]="editBuffer[player.id]"
+                name="edit-{{ round.id }}-{{ player.id }}"
+                required
+              />
+            </div>
+          </div>
+          <div class="edit-actions">
+            <app-button type="submit">{{'rounds.save' | translate}}</app-button>
+            <app-button type="button" buttonClass="secondary" (click)="cancelEdit()" (keydown)="cancelEdit()">{{'rounds.cancel' | translate}}</app-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </app-card>
+</main>
