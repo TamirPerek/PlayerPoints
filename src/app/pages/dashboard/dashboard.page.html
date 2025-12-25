@@ -1,8 +1,9 @@
 <main class="page">
-  <header>
-    <h1>{{ 'dashboard.headline' | translate }}</h1>
-    <p>{{ 'dashboard.sub' | translate }}</p>
-  </header>
+  <app-header
+    [title]="'dashboard.headline' | translate"
+    [subtitle]="'dashboard.sub' | translate"
+    [showBackButton]="false"
+  ></app-header>
 
   <section class="cards">
     <a routerLink="/players" class="card">

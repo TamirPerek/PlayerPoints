@@ -1,11 +1,9 @@
 <main class="page">
-  <header class="page-header">
-    <div>
-      <h1>{{'results.title' | translate}}</h1>
-      <p>{{'results.subtitle' | translate}}</p>
-    </div>
-    <a routerLink="/" class="link">Zurück</a>
-  </header>
+  <app-header
+    [title]="'results.title' | translate"
+    [subtitle]="'results.subtitle' | translate"
+    [showBackButton]="true">
+  </app-header>
 
   <app-card *ngIf="game.players.length; else empty">
     <h2>{{'results.scoreboard' | translate}}</h2>

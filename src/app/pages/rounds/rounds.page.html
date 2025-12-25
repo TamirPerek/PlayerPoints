@@ -1,11 +1,9 @@
 <main class="page">
-  <header class="page-header">
-    <div>
-      <h1>{{'rounds.title' | translate}}</h1>
-      <p>{{'rounds.subtitle' | translate}}</p>
-    </div>
-    <a routerLink="/" class="link">{{'app.back' | translate}}</a>
-  </header>
+  <app-header
+    [title]="'rounds.title' | translate"
+    [subtitle]="'rounds.subtitle' | translate"
+    [showBackButton]="true">
+  </app-header>
 
   <app-card *ngIf="game.players.length; else noPlayers">
     <form class="round-form" (ngSubmit)="addRound()">

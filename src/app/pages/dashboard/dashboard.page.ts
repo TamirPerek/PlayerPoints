@@ -2,11 +2,12 @@ import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { GameService } from '../../services/games';
 import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent} from '../../components/header/header.component';
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [RouterLink, TranslateModule],
+  imports: [RouterLink, TranslateModule, HeaderComponent],
   templateUrl: `./dashboard.page.html`,
   styleUrls: [`./dashboard.page.css`],
 })

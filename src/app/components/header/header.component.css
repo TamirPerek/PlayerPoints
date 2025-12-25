@@ -1,0 +1,4 @@
+header p { margin-top: 0.25rem; color: var(--fg); }
+.page-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.link { text-decoration: none; color: var(--fg); font-weight: 500; }
+

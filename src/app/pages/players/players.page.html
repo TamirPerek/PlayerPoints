@@ -1,11 +1,9 @@
 <main class="page">
-  <header class="page-header">
-    <div>
-      <h1>{{'players.title' | translate}}</h1>
-      <p>{{'players.subtitle' | translate}}</p>
-    </div>
-    <a routerLink="/" class="link">{{'app.back' | translate}}</a>
-  </header>
+  <app-header
+    [title]="'players.title' | translate"
+    [subtitle]="'players.subtitle' | translate"
+    [showBackButton]="true"
+  ></app-header>
 
   <app-card>
     <form (ngSubmit)="addPlayer()">

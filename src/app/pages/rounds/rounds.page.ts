@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../services/games';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardComponent} from '../../components/card/card.component';
-import {ButtonComponent} from '../../components/button/button.component';
+import { ButtonComponent } from '../../components/button/button.component';
+import { HeaderComponent } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-rounds-page',
   standalone: true,
-  imports: [FormsModule, RouterLink, CommonModule, TranslateModule, CardComponent, ButtonComponent],
+  imports: [FormsModule, CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent],
   templateUrl: './rounds.page.html',
   styleUrls: ['./rounds.page.css'],
 })

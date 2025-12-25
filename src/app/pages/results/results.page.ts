@@ -1,15 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameService } from '../../services/games';
 import { TranslateModule } from '@ngx-translate/core';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
+import { HeaderComponent} from '../../components/header/header.component';
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
-  imports: [RouterLink, CommonModule, TranslateModule, CardComponent, ButtonComponent],
+  imports: [CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent],
   templateUrl: './results.page.html',
   styleUrls: ['./results.page.css'],
 })
