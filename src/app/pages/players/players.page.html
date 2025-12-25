@@ -21,14 +21,12 @@
         <strong>{{ player.name }}</strong>
       </div>
       <ng-template #editRow>
-        <label class="field inline">
           <input
             type="text"
             [(ngModel)]="editName"
             name="editName-{{ player.id }}"
             required
           />
-        </label>
       </ng-template>
       <div class="row-actions">
         <button *ngIf="editingId !== player.id" type="button" class="secondary" (click)="startEdit(player)">
