@@ -8,11 +8,12 @@ nav.topbar { position: relative; }
 .lang-dropdown { margin-left: auto; position: relative; }
 .lang-trigger { display: inline-flex; align-items: center; gap: 0.35rem; background: transparent; border: 1px solid var(--topbar-fg); color: inherit; padding: 0.35rem 0.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
 .lang-trigger .flag { font-size: 1.1rem; }
-.lang-menu { position: absolute; right: 0; top: calc(100% + 6px); background: var(--card-bg, #fff); color: var(--fg); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-radius: 8px; padding: 0.25rem; display: none; min-width: 140px; z-index: 10; }
+.lang-menu { position: absolute; right: 0; top: calc(100% + 6px); background: var(--surface); color: var(--fg); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-radius: 8px; padding: 0.25rem; display: none; min-width: 140px; z-index: 10; }
 .lang-dropdown:hover .lang-menu, .lang-dropdown:focus-within .lang-menu { display: block; }
 .lang-menu button { width: 100%; display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; background: transparent; border: none; text-align: left; cursor: pointer; border-radius: 6px; }
 .lang-menu button:hover { background: rgba(0,0,0,0.05); }
 .lang-menu .flag { font-size: 1rem; }
+.lang-name { color: var(--fg); }
 
 @media (max-width: 640px) {
   .topbar { justify-content: center; text-align: center; }
@@ -20,8 +21,3 @@ nav.topbar { position: relative; }
   .page { padding: 1rem; }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: #0b1221;
-  }
-}

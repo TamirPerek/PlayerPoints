@@ -55,7 +55,7 @@
         </div>
 
         <div class="round-totals" *ngIf="editingRoundId !== round.id">
-          <div class="round-totals-title">{{'rounds.totalsAfter' | translate}} {{ i + 1 }}<!--Zwischenstand nach Runde {{ i + 1 }}--></div>
+          <div class="round-totals-title">{{'rounds.totalsAfter' | translate}} {{ i + 1 }}</div>
           <div class="round-scores">
             <div *ngFor="let player of game.players">
               <strong>{{ player.name }}: </strong>
@@ -84,8 +84,8 @@
             </div>
           </div>
           <div class="edit-actions">
-            <button type="submit">{{'rounds.save' | translate}}</button>
-            <button type="button" class="secondary" (click)="cancelEdit()">{{'rounds.cancel' | translate}}</button>
+            <app-button type="submit">{{'rounds.save' | translate}}</app-button>
+            <app-button type="button" buttonClass="secondary" (click)="cancelEdit()" (keydown)="cancelEdit()">{{'rounds.cancel' | translate}}</app-button>
           </div>
         </form>
       </div>

@@ -15,7 +15,7 @@
     </form>
   </app-card>
 
-  <app-card>
+  <app-card *ngIf="game.players.length; else empty">
     <div class="list-row" *ngFor="let player of game.players">
       <div class="row-content" *ngIf="editingId !== player.id; else editRow">
         <strong>{{ player.name }}</strong>
@@ -38,7 +38,9 @@
   </app-card>
 
   <ng-template #empty>
-    <div class="card muted">{{'players.empty' | translate}}</div>
+    <app-card>
+    <p class="muted">{{'players.empty' | translate}}</p>
+    </app-card>
   </ng-template>
 
 </main>

@@ -1,2 +1,21 @@
-<router-outlet></router-outlet>
-
+<div class="shell">
+  <nav class="topbar">
+    <a routerLink="/">{{ 'app.title' | translate }}</a>
+    <div class="lang-dropdown">
+      <button class="lang-trigger" type="button">
+        <span class="flag">{{ currentFlag }}</span>
+        <span class="code">{{ lang.toUpperCase() }}</span>
+        <span aria-hidden="true">▾</span>
+      </button>
+      <div class="lang-menu">
+        <button type="button" (click)="setLang('de')">
+          <span class="flag">🇩🇪</span><span class="lang-name">Deutsch</span>
+        </button>
+        <button type="button" (click)="setLang('en')">
+          <span class="flag">🇬🇧</span><span class="lang-name">English</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

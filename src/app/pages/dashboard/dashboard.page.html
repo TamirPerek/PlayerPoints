@@ -14,7 +14,7 @@
       <h2>{{ 'dashboard.rounds' | translate }}</h2>
       <p>{{ 'dashboard.roundsCount' | translate:{ count: roundCount() } }}</p>
     </a>
-    <a routerLink="/results" class="card" [class.disabled]="!roundCount()">
+    <a routerLink="/results" class="card" [class.disabled]="!roundCount() || !playerCount()">
       <h2>{{ 'dashboard.results' | translate }}</h2>
       <p>{{ 'dashboard.viewWinner' | translate }}</p>
     </a>

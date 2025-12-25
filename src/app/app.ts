@@ -7,29 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, TranslateModule, CommonModule],
-  template: `
-    <div class="shell">
-      <nav class="topbar">
-        <a routerLink="/">{{ 'app.title' | translate }}</a>
-        <div class="lang-dropdown">
-          <button class="lang-trigger" type="button">
-            <span class="flag">{{ currentFlag }}</span>
-            <span class="code">{{ lang.toUpperCase() }}</span>
-            <span aria-hidden="true">▾</span>
-          </button>
-          <div class="lang-menu">
-            <button type="button" (click)="setLang('de')">
-              <span class="flag">🇩🇪</span><span>Deutsch</span>
-            </button>
-            <button type="button" (click)="setLang('en')">
-              <span class="flag">🇬🇧</span><span>English</span>
-            </button>
-          </div>
-        </div>
-      </nav>
-      <router-outlet></router-outlet>
-    </div>
-  `,
+  templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
 export class App {
