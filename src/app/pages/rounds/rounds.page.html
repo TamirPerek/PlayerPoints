@@ -1,10 +1,10 @@
 <main class="page">
   <header class="page-header">
     <div>
-      <h1>Runden</h1>
-      <p>Punkte je Runde erfassen.</p>
+      <h1>{{'rounds.title' | translate}}</h1>
+      <p>{{'rounds.subtitle' | translate}}</p>
     </div>
-    <a routerLink="/" class="link">Zurück</a>
+    <a routerLink="/" class="link">{{'app.back' | translate}}</a>
   </header>
 
   <app-card *ngIf="game.players.length; else noPlayers">
@@ -21,30 +21,30 @@
           required
         />
       </div>
-      <app-button type="submit">Runde hinzufügen</app-button>
+      <app-button type="submit">{{'rounds.addRound' | translate}}</app-button>
     </form>
   </app-card>
   <ng-template #noPlayers>
-    <div class="card muted">Lege zuerst Spieler an.</div>
+    <div class="card muted">{{'rounds.noPlayers' | translate}}</div>
   </ng-template>
 
   <app-card *ngIf="game.rounds.length">
     <div class="section-head">
-      <h2>Erfasste Runden</h2>
+      <h2>{{'rounds.title2' | translate}}</h2>
       <button class="link-btn danger" type="button" (click)="clearRounds()">
-        Runden löschen
+        {{'rounds.deleteRounds' | translate}}
       </button>
     </div>
     <div class="round-list">
       <div class="round" *ngFor="let round of game.rounds; index as i">
         <div class="round-header">
-          <span>Runde {{ i + 1 }}</span>
+          <span>{{'rounds.round' | translate}} {{ i + 1 }}</span>
           <div class="round-actions">
             <button class="link-btn" type="button" (click)="toggleEdit(round.id)">
-              {{ editingRoundId === round.id ? 'Abbrechen' : 'Bearbeiten' }}
+              {{ editingRoundId === round.id ?  ('rounds.cancel' | translate) : 'rounds.edit' | translate}}
             </button>
             <button class="link-btn danger" type="button" (click)="deleteRound(round.id)">
-              Löschen
+              {{'rounds.delete' | translate}}
             </button>
           </div>
         </div>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="round-totals" *ngIf="editingRoundId !== round.id">
-          <div class="round-totals-title">Zwischenstand nach Runde {{ i + 1 }}</div>
+          <div class="round-totals-title">{{'rounds.totalsAfter' | translate}} {{ i + 1 }}<!--Zwischenstand nach Runde {{ i + 1 }}--></div>
           <div class="round-scores">
             <div *ngFor="let player of game.players">
               <strong>{{ player.name }}: </strong>
@@ -86,8 +86,8 @@
             </div>
           </div>
           <div class="edit-actions">
-            <button type="submit">Speichern</button>
-            <button type="button" class="secondary" (click)="cancelEdit()">Abbrechen</button>
+            <button type="submit">{{'rounds.save' | translate}}</button>
+            <button type="button" class="secondary" (click)="cancelEdit()">{{'rounds.cancel' | translate}}</button>
           </div>
         </form>
       </div>

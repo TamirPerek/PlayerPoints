@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "PlayerPoints",
+    "back": "Back"
+  },
+  "dashboard": {
+    "headline": "PlayerPoints",
+    "sub": "Manage players, record round scores, and see the result.",
+    "players": "Players",
+    "playersCount": "{{count}} players created",
+    "rounds": "Rounds",
+    "roundsCount": "{{count}} rounds recorded",
+    "results": "Results",
+    "viewWinner": "View current winner"
+  },
+  "players": {
+    "title": "Players",
+    "subtitle": "Create or remove players.",
+    "name": "Name",
+    "add": "Add",
+    "edit": "Edit",
+    "remove": "Remove",
+    "save": "Save",
+    "cancel": "Cancel",
+    "empty": "No players yet."
+  },
+  "rounds": {
+    "title": "Rounds",
+    "title2": "Recorded rounds",
+    "subtitle": "Enter points per round.",
+    "addRound": "Add round",
+    "deleteRounds": "Delete rounds",
+    "round": "Round",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "noPlayers": "Create players first.",
+    "totalsAfter": "Totals after round"
+  },
+  "results": {
+    "title": "Results",
+    "subtitle": "Totals and winner.",
+    "scoreboard": "Scoreboard",
+    "winner": "Winner: {{name}} with {{score}} points",
+    "empty": "No players/rounds available.",
+    "newGame": "New game"
+  }
+}
+

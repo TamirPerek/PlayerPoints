@@ -1,21 +1,21 @@
 <main class="page">
   <header>
-    <h1>PlayerPoints</h1>
-    <p>Verwalte Spieler, erfasse Rundenpunkte und sieh das Ergebnis.</p>
+    <h1>{{ 'dashboard.headline' | translate }}</h1>
+    <p>{{ 'dashboard.sub' | translate }}</p>
   </header>
 
   <section class="cards">
     <a routerLink="/players" class="card">
-      <h2>Spieler</h2>
-      <p>{{ playerCount() }} Spieler angelegt</p>
+      <h2>{{ 'dashboard.players' | translate }}</h2>
+      <p>{{ 'dashboard.playersCount' | translate:{ count: playerCount() } }}</p>
     </a>
     <a routerLink="/rounds" class="card" [class.disabled]="!playerCount()">
-      <h2>Runden</h2>
-      <p>{{ roundCount() }} Runden erfasst</p>
+      <h2>{{ 'dashboard.rounds' | translate }}</h2>
+      <p>{{ 'dashboard.roundsCount' | translate:{ count: roundCount() } }}</p>
     </a>
     <a routerLink="/results" class="card" [class.disabled]="!roundCount()">
-      <h2>Ergebnis</h2>
-      <p>Aktuellen Sieger ansehen</p>
+      <h2>{{ 'dashboard.results' | translate }}</h2>
+      <p>{{ 'dashboard.viewWinner' | translate }}</p>
     </a>
   </section>
 </main>

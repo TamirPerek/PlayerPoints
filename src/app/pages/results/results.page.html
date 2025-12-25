@@ -1,14 +1,14 @@
 <main class="page">
   <header class="page-header">
     <div>
-      <h1>Ergebnis</h1>
-      <p>Summen und Sieger.</p>
+      <h1>{{'results.title' | translate}}</h1>
+      <p>{{'results.subtitle' | translate}}</p>
     </div>
     <a routerLink="/" class="link">Zurück</a>
   </header>
 
   <app-card *ngIf="game.players.length; else empty">
-    <h2>Scoreboard</h2>
+    <h2>{{'results.scoreboard' | translate}}</h2>
     <div class="scores">
       <div class="score-row" *ngFor="let player of sortedPlayers()">
         <div>
@@ -18,11 +18,11 @@
       </div>
     </div>
     <div class="winner" *ngIf="winner() as w">
-      <p>Sieger: <strong>{{ w.player.name }}</strong> mit {{ w.score }} Punkten</p>
+      <p>{{'results.winner' | translate: { name: w.player.name, score: w.score} }}</p>
     </div>
-    <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">Neues Spiel</app-button>
+    <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">{{'results.newGame' | translate}}</app-button>
   </app-card>
   <ng-template #empty>
-    <div class="card muted">Keine Spieler/Runden vorhanden.</div>
+    <div class="card muted">{{'results.empty' | translate}}</div>
   </ng-template>
 </main>

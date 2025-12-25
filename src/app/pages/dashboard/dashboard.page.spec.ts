@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardPage } from './dashboard.page';
 import { GameService } from '../../services/games';
 import { vi } from 'vitest';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('DashboardPage', () => {
   let fixture: ComponentFixture<DashboardPage>;
@@ -16,7 +17,14 @@ describe('DashboardPage', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [DashboardPage, RouterTestingModule],
+      imports: [
+        DashboardPage,
+        RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
+          defaultLanguage: 'de',
+        }),
+      ],
       providers: [{ provide: GameService, useValue: mockGame }],
     });
 

@@ -1,18 +1,18 @@
 <main class="page">
   <header class="page-header">
     <div>
-      <h1>Spieler</h1>
-      <p>Lege Spieler an oder entferne sie.</p>
+      <h1>{{'players.title' | translate}}</h1>
+      <p>{{'players.subtitle' | translate}}</p>
     </div>
-    <a routerLink="/" class="link">Zurück</a>
+    <a routerLink="/" class="link">{{'app.back' | translate}}</a>
   </header>
 
   <app-card>
     <form (ngSubmit)="addPlayer()">
       <label class="field">
-        <span>Name</span>
+        <span>{{'players.name' | translate}}</span>
         <input type="text" [(ngModel)]="name" name="playerName" required />
-        <app-button buttonClass="" type="submit">Hinzufügen</app-button>
+        <app-button buttonClass="" type="submit">{{'players.add' | translate}}</app-button>
       </label>
     </form>
   </app-card>
@@ -31,16 +31,16 @@
         />
       </ng-template>
       <div class="row-actions">
-        <app-button *ngIf="editingId !== player.id" buttonClass="secondary" (click)="startEdit(player)" (keydown)="startEdit(player)">Bearbeiten</app-button>
-        <app-button *ngIf="editingId !== player.id" buttonClass="" (click)="remove(player.id)" (keydown)="remove(player.id)">Entfernen</app-button>
-        <app-button *ngIf="editingId === player.id" buttonClass="" (click)="saveEdit(player.id)" (keydown)="saveEdit(player.id)">Speichern</app-button>
-        <app-button *ngIf="editingId === player.id" buttonClass="secondary" (click)="cancelEdit()" (keydown)="cancelEdit()">Abbrechen</app-button>
+        <app-button *ngIf="editingId !== player.id" buttonClass="secondary" (click)="startEdit(player)" (keydown)="startEdit(player)">{{'players.edit' | translate}}</app-button>
+        <app-button *ngIf="editingId !== player.id" buttonClass="" (click)="remove(player.id)" (keydown)="remove(player.id)">{{'players.remove' | translate}}</app-button>
+        <app-button *ngIf="editingId === player.id" buttonClass="" (click)="saveEdit(player.id)" (keydown)="saveEdit(player.id)">{{'players.save' | translate}}</app-button>
+        <app-button *ngIf="editingId === player.id" buttonClass="secondary" (click)="cancelEdit()" (keydown)="cancelEdit()">{{'players.cancel' | translate}}</app-button>
       </div>
     </div>
   </app-card>
 
   <ng-template #empty>
-    <div class="card muted">Noch keine Spieler angelegt.</div>
+    <div class="card muted">{{'players.empty' | translate}}</div>
   </ng-template>
 
 </main>
