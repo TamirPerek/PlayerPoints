@@ -2,9 +2,18 @@
 .topbar { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: var(--topbar-bg); color: var(--topbar-fg); gap: 0.75rem; flex-wrap: wrap; }
 .topbar a { color: inherit; text-decoration: none; font-weight: 600; }
 .links { display: flex; gap: 1rem; flex-wrap: wrap; }
-.page { padding: 1.5rem; }
+.page {
+  padding: 1.5rem;
+}
 body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; }
-nav.topbar { position: relative; }
+nav.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12, 18, 32, 0.65);
+  backdrop-filter: blur(12px) saturate(1.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
 .lang-dropdown { margin-left: auto; position: relative; }
 .lang-trigger { display: inline-flex; align-items: center; gap: 0.35rem; background: transparent; border: 1px solid var(--topbar-fg); color: inherit; padding: 0.35rem 0.5rem; border-radius: 6px; cursor: pointer; font-weight: 600; }
 .lang-trigger .flag { font-size: 1.1rem; }
@@ -21,3 +30,8 @@ nav.topbar { position: relative; }
   .page { padding: 1rem; }
 }
 
+@media (prefers-color-scheme: dark) {
+  nav.topbar {
+    border: 1px solid #1f2937;
+  }
+}

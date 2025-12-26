@@ -22,8 +22,8 @@ button {
 }
 
 button:hover {
-  background: #1f2937;
-  border-color: #1f2937;
+  background: #324059;
+  border-color: #324059;
 }
 
 .secondary:hover {
@@ -39,8 +39,8 @@ input:focus-visible {
 
 @media (prefers-color-scheme: dark) {
   button {
-    background: #1f2937;
-    border-color: #1f2937;
+    background: #324059;
+    border-color: #324059;
   }
 
   button:hover {

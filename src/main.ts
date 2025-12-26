@@ -2,9 +2,13 @@ import {bootstrapApplication} from '@angular/platform-browser';
 import * as Sentry from "@sentry/angular";
 import {appConfig} from './app/app.config';
 import {App} from './app/app';
+import {isDevMode} from '@angular/core';
+import { version as appVersion } from '../package.json'
 
 Sentry.init({
   dsn: "https://6578d57c49e7014c9c7d0bd503069b28@o4510601228386304.ingest.de.sentry.io/4510601231204432",
+  environment: isDevMode() ? 'development' : 'production',
+  release: appVersion,
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
   sendDefaultPii: false,
