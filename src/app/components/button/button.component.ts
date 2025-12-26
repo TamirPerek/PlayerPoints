@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import * as Sentry from "@sentry/angular";
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, Sentry.TraceModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css']
 })
