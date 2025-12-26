@@ -5,11 +5,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { HeaderComponent} from '../../components/header/header.component';
+import * as Sentry from "@sentry/angular";
 
 @Component({
   selector: 'app-results-page',
   standalone: true,
-  imports: [CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent],
+  imports: [CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent, Sentry.TraceModule],
   templateUrl: './results.page.html',
   styleUrls: ['./results.page.css'],
 })

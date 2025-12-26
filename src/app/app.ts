@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import * as Sentry from "@sentry/angular";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, TranslateModule, CommonModule],
+  imports: [RouterOutlet, RouterLink, TranslateModule, CommonModule, Sentry.TraceModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })

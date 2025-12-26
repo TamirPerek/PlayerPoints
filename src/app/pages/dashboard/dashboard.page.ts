@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { GameService } from '../../services/games';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent} from '../../components/header/header.component';
+import * as Sentry from "@sentry/angular";
 
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [RouterLink, TranslateModule, HeaderComponent],
+  imports: [RouterLink, TranslateModule, HeaderComponent, Sentry.TraceModule],
   templateUrl: `./dashboard.page.html`,
   styleUrls: [`./dashboard.page.css`],
 })

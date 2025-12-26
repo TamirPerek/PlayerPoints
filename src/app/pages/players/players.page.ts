@@ -6,11 +6,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ButtonComponent } from '../../components/button/button.component';
 import { CardComponent} from '../../components/card/card.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import * as Sentry from "@sentry/angular";
 
 @Component({
   selector: 'app-players-page',
   standalone: true,
-  imports: [FormsModule, CommonModule, TranslateModule, ButtonComponent, CardComponent, HeaderComponent],
+  imports: [FormsModule, CommonModule, TranslateModule, ButtonComponent, CardComponent, HeaderComponent, Sentry.TraceModule],
   templateUrl: 'players.page.html',
   styleUrls: ['players.page.css'],
 })
