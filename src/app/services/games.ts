@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Player } from '../models/player';
 import { Round } from '../models/round';
+import * as Sentry from "@sentry/angular";
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
@@ -115,6 +116,7 @@ export class GameService {
       this.rounds = Array.isArray(parsed.rounds) ? parsed.rounds : [];
     } catch (error) {
       console.warn('Konnte gespeichertes Spiel nicht laden', error);
+      Sentry.captureException(error);
       this.players = [];
       this.rounds = [];
     }
