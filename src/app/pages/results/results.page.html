@@ -5,25 +5,32 @@
     [showBackButton]="true">
   </app-header>
 
-  <app-card *ngIf="game.players.length; else empty">
-    <h2>{{'results.scoreboard' | translate}}</h2>
-    <div class="scores">
-      <div class="score-row" *ngFor="let player of sortedPlayers()">
-        <div class="winner-name" *ngIf="player.id===winner()?.player?.id; else regularName">
-          <strong>{{ player.name }}</strong>
-        </div>
-        <ng-template #regularName>
-          <div class="player-name">{{ player.name }}</div>
-        </ng-template>
-        <div class="score-value">{{ totals()[player.id] }}</div>
+  @if (game.players.length) {
+    <app-card>
+      <h2>{{ 'results.scoreboard' | translate }}</h2>
+      <div class="scores">
+        @for (player of sortedPlayers(); track player) {
+          <div class="score-row">
+            @if (player.id === winner()?.player?.id) {
+              <div class="winner-name">
+                <strong>{{ player.name }}</strong>
+              </div>
+            } @else {
+              <div class="player-name">{{ player.name }}</div>
+            }
+            <div class="score-value">{{ totals()[player.id] }}</div>
+          </div>
+        }
       </div>
-    </div>
-    <div class="winner" *ngIf="winner() as w">
-      <p>{{'results.winner' | translate: { name: w.player.name, score: w.score} }}</p>
-    </div>
-    <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">{{'results.newGame' | translate}}</app-button>
-  </app-card>
-  <ng-template #empty>
-    <div class="card muted">{{'results.empty' | translate}}</div>
-  </ng-template>
+      @if (winner(); as w) {
+        <div class="winner">
+          <p>{{ 'results.winner' | translate: {name: w.player.name, score: w.score} }}</p>
+        </div>
+      }
+      <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">{{ 'results.newGame' | translate }}
+      </app-button>
+    </app-card>
+  } @else {
+    <div class="card muted">{{ 'results.empty' | translate }}</div>
+  }
 </main>
