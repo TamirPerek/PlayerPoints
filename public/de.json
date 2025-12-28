@@ -36,7 +36,8 @@
     "save": "Speichern",
     "cancel": "Abbrechen",
     "noPlayers": "Lege zuerst Spielende an.",
-    "totalsAfter": "Zwischenstand nach Runde"
+    "totalsAfter": "Zwischenstand nach Runde",
+    "finalizeGame" : "Spiel beenden"
   },
   "results": {
     "title": "Ergebnis",

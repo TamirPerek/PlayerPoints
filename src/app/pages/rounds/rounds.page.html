@@ -20,6 +20,7 @@
         />
       </div>
       <app-button type="submit">{{'rounds.addRound' | translate}}</app-button>
+      <app-button buttonClass="alert" (click)="finalizeGame()" (keydown)="finalizeGame()">{{'rounds.finalizeGame' | translate}}</app-button>
     </form>
   </app-card>
   <ng-template #noPlayers>

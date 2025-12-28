@@ -36,7 +36,8 @@
     "save": "Save",
     "cancel": "Cancel",
     "noPlayers": "Create players first.",
-    "totalsAfter": "Totals after round"
+    "totalsAfter": "Totals after round",
+    "finalizeGame" : "Finish game"
   },
   "results": {
     "title": "Results",

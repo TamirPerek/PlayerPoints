@@ -9,9 +9,12 @@
     <h2>{{'results.scoreboard' | translate}}</h2>
     <div class="scores">
       <div class="score-row" *ngFor="let player of sortedPlayers()">
-        <div>
+        <div class="winner-name" *ngIf="player.id===winner()?.player?.id; else regularName">
           <strong>{{ player.name }}</strong>
         </div>
+        <ng-template #regularName>
+          <div class="player-name">{{ player.name }}</div>
+        </ng-template>
         <div class="score-value">{{ totals()[player.id] }}</div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { CardComponent} from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import * as Sentry from "@sentry/angular";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-rounds-page',
@@ -21,6 +22,7 @@ export class RoundsPage {
   protected editingRoundId: string | null = null;
   protected editBuffer: Record<string, number> = {};
   protected readonly game = inject(GameService);
+  private readonly router = inject(Router);
 
   addRound() {
     this.game.addRound(this.scores);
@@ -84,5 +86,9 @@ export class RoundsPage {
       }
     }
     return totals;
+  }
+
+  finalizeGame(): void {
+    this.router.navigate(['/results']);
   }
 }
