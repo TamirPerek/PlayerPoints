@@ -5,24 +5,24 @@
   },
   "dashboard": {
     "headline": "PlayerPoints",
-    "sub": "Verwalte Spieler, erfasse Rundenpunkte und sieh das Ergebnis.",
-    "players": "Spieler",
-    "playersCount": "{{count}} Spieler angelegt",
+    "sub": "Verwalte Spielende, erfasse Rundenpunkte und sieh das Ergebnis.",
+    "players": "Spielende",
+    "playersCount": "{{count}} Spielende angelegt",
     "rounds": "Runden",
     "roundsCount": "{{count}} Runden erfasst",
     "results": "Ergebnis",
     "viewWinner": "Aktuellen Sieger ansehen"
   },
   "players": {
-    "title": "Spieler",
-    "subtitle": "Lege Spieler an oder entferne sie.",
+    "title": "Spielende",
+    "subtitle": "Lege Spielende an oder entferne sie.",
     "name": "Name",
     "add": "Hinzufügen",
     "edit": "Bearbeiten",
     "remove": "Entfernen",
     "save": "Speichern",
     "cancel": "Abbrechen",
-    "empty": "Noch keine Spieler angelegt."
+    "empty": "Noch keine Spielende angelegt."
   },
   "rounds": {
     "title": "Runden",
@@ -35,15 +35,15 @@
     "delete": "Löschen",
     "save": "Speichern",
     "cancel": "Abbrechen",
-    "noPlayers": "Lege zuerst Spieler an.",
+    "noPlayers": "Lege zuerst Spielende an.",
     "totalsAfter": "Zwischenstand nach Runde"
   },
   "results": {
     "title": "Ergebnis",
-    "subtitle": "Summen und Sieger.",
+    "subtitle": "Summen und erstplatzierte Person.",
     "scoreboard": "Scoreboard",
-    "winner": "Sieger: {{name}} mit {{score}} Punkten",
-    "empty": "Keine Spieler/Runden vorhanden.",
+    "winner": "Erstplatzierte Person: {{name}} mit {{score}} Punkten",
+    "empty": "Keine Spielenden oder Runden vorhanden.",
     "newGame": "Neues Spiel"
   }
 }
