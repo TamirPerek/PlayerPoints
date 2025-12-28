@@ -6,8 +6,7 @@ import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { HeaderComponent} from '../../components/header/header.component';
 import * as Sentry from "@sentry/angular";
-
-declare const confetti: (opts?: any) => void;
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-results-page',
