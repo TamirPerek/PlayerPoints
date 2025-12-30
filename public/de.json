@@ -42,7 +42,7 @@
   "results": {
     "title": "Ergebnis",
     "subtitle": "Summen und erstplatzierte Person.",
-    "scoreboard": "Scoreboard",
+    "scoreboard": "Platzierungen",
     "winner": "Erstplatzierte Person: {{name}} mit {{score}} Punkten",
     "empty": "Keine Spielenden oder Runden vorhanden.",
     "newGame": "Neues Spiel"
