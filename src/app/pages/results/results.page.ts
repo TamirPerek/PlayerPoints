@@ -41,9 +41,9 @@ export class ResultsPage implements AfterViewInit {
 
   ngAfterViewInit() {
     Sentry.startSpan({ name: 'ResultsPage Confetti Animation' }, () => {
-      const duration = 15 * 1000;
+      const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const defaults: confetti.Options = { startVelocity: 10, spread: 360, ticks: 60, zIndex: 0 , shapes: ["star"], colors: ["#af9904"]};
 
       const interval = setInterval( () => {
         const timeLeft = animationEnd - Date.now();

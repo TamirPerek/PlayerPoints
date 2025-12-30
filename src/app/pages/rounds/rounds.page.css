@@ -7,6 +7,9 @@
   gap: 1rem;
 }
 
+.score-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding: 0.35rem 0; gap: 0.5rem; }
+.score-row:last-child { border-bottom: none; }
+
 .page-header {
   display: flex;
   align-items: center;
@@ -105,11 +108,7 @@ button {
   color: #b91c1c;
 }
 
-.round-scores {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.35rem;
-}
+.round-scores { display: grid; gap: 0.5rem; }
 
 .edit-form {
   display: grid;

@@ -9,14 +9,14 @@
     <app-card>
       <h2>{{ 'results.scoreboard' | translate }}</h2>
       <div class="scores">
-        @for (player of sortedPlayers(); track player) {
+        @for (player of sortedPlayers(); track player; let i = $index) {
           <div class="score-row">
             @if (player.id === winner()?.player?.id) {
               <div class="winner-name">
-                <strong>{{ player.name }}</strong>
+                <strong>{{i + 1}}. {{ player.name }}</strong>
               </div>
             } @else {
-              <div class="player-name">{{ player.name }}</div>
+              <div class="player-name">{{i + 1}}. {{ player.name }}</div>
             }
             <div class="score-value">{{ totals()[player.id] }}</div>
           </div>
