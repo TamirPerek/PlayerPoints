@@ -5,6 +5,23 @@ import { GameService } from '../../services/games';
 import { vi } from 'vitest';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+// Stub confetti so that no real canvas is used.
+vi.mock('canvas-confetti', () => ({
+__esModule: true,
+default: vi.fn(() => ({ reset: vi.fn() })),
+}));
+
+// Provide a canvas context in JSDOM.
+beforeAll(() => {
+Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
+  value: vi.fn(() => ({
+    clearRect: vi.fn(),
+    // add further methods if needed
+    })),
+    configurable: true,
+  });
+});
+
 describe('ResultsPage', () => {
   let fixture: ComponentFixture<ResultsPage>;
   let component: ResultsPage;
