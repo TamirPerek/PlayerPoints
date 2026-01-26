@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PlayersPage } from './players.page';
 import { GameService } from '../../services/games';
 import { vi } from 'vitest';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateNoOpLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('PlayersPage', () => {
   let fixture: ComponentFixture<PlayersPage>;
@@ -24,8 +24,8 @@ describe('PlayersPage', () => {
         PlayersPage,
         RouterTestingModule,
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
-          defaultLanguage: 'de',
+          loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader },
+          fallbackLang: 'de',
         }),
       ],
       providers: [{ provide: GameService, useValue: mockGame }],

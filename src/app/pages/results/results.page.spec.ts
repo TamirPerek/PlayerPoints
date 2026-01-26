@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ResultsPage } from './results.page';
 import { GameService } from '../../services/games';
 import { vi } from 'vitest';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateNoOpLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 // Stub confetti so that no real canvas is used.
 vi.mock('canvas-confetti', () => ({
@@ -44,8 +44,8 @@ describe('ResultsPage', () => {
         ResultsPage,
         RouterTestingModule,
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
-          defaultLanguage: 'de',
+          loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader },
+          fallbackLang: 'de',
         }),
       ],
       providers: [{ provide: GameService, useValue: mockGame }],

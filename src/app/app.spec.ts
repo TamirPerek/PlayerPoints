@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateNoOpLoader, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { provideRouter } from '@angular/router';
 
 import { App } from './app';
@@ -11,8 +11,8 @@ describe('App', () => {
       imports: [
         App,
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
-          defaultLanguage: 'de',
+          loader: { provide: TranslateLoader, useClass: TranslateNoOpLoader },
+          fallbackLang: 'de',
         }),
       ],
       providers: [provideRouter(routes)],
