@@ -7,6 +7,7 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { HeaderComponent} from '../../components/header/header.component';
 import * as Sentry from "@sentry/angular";
 import confetti from 'canvas-confetti';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results-page',
@@ -18,6 +19,7 @@ import confetti from 'canvas-confetti';
 export class ResultsPage implements AfterViewInit {
   protected firstOf: boolean = true;
   protected readonly game = inject(GameService);
+  private readonly router = inject(Router);
   protected readonly totals = computed(() => {
     const map: Record<string, number> = {};
     for (const player of this.game.players) {
@@ -33,6 +35,12 @@ export class ResultsPage implements AfterViewInit {
 
   reset() {
     this.game.reset();
+  }
+
+  resetKeepPlayers() {
+    // Entfernt nur die Runden und behält die Spielenden
+    this.game.resetRounds();
+    this.router.navigate(['/rounds']);
   }
 
   randomInRange(min:number, max:number) : number {

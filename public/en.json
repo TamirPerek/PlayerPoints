@@ -45,7 +45,7 @@
     "scoreboard": "Scoreboard",
     "winner": "Winner: {{name}} with {{score}} points",
     "empty": "No players/rounds available.",
-    "newGame": "New game"
+    "newGame": "New game",
+    "newGameKeepPlayers": "New game (keep players)"
   }
 }
-

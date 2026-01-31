@@ -27,8 +27,14 @@
           <p>{{ 'results.winner' | translate: {name: w.player.name, score: w.score} }}</p>
         </div>
       }
-      <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">{{ 'results.newGame' | translate }}
-      </app-button>
+      <div class="actions">
+        <app-button (click)="resetKeepPlayers()" (keydown)="resetKeepPlayers()" buttonClass="secondary">
+          {{ 'results.newGameKeepPlayers' | translate }}
+        </app-button>
+        <app-button (click)="reset()" (keydown)="reset()" buttonClass="alert">
+          {{ 'results.newGame' | translate }}
+        </app-button>
+      </div>
     </app-card>
   } @else {
     <div class="card muted">{{ 'results.empty' | translate }}</div>

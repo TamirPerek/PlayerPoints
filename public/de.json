@@ -45,7 +45,7 @@
     "scoreboard": "Platzierungen",
     "winner": "Erstplatzierte Person: {{name}} mit {{score}} Punkten",
     "empty": "Keine Spielenden oder Runden vorhanden.",
-    "newGame": "Neues Spiel"
+    "newGame": "Neues Spiel",
+    "newGameKeepPlayers": "Neues Spiel (Spielende behalten)"
   }
 }
-
