@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "PlayerPoints",
-    "back": "Back"
+    "back": "Back",
+    "toggleTheme": "Toggle theme"
   },
   "dashboard": {
     "headline": "PlayerPoints",

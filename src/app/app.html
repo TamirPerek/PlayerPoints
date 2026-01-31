@@ -1,19 +1,25 @@
 <div class="shell">
   <nav class="topbar">
     <a routerLink="/">{{ 'app.title' | translate }}</a>
-    <div class="lang-dropdown">
-      <button class="lang-trigger" type="button">
-        <span class="flag">{{ currentFlag }}</span>
-        <span class="code">{{ lang.toUpperCase() }}</span>
-        <span aria-hidden="true">▾</span>
+    <div class="toolbar-actions">
+      <button class="theme-toggle" type="button" (click)="toggleTheme()">
+        <span aria-hidden="true">{{ theme === 'dark' ? '☾' : '☀' }}</span>
+        <span class="sr-only">{{ 'app.toggleTheme' | translate }}</span>
       </button>
-      <div class="lang-menu">
-        <button type="button" (click)="setLang('de')">
-          <span class="flag">🇩🇪</span><span class="lang-name">Deutsch</span>
+      <div class="lang-dropdown">
+        <button class="lang-trigger" type="button">
+          <span class="flag">{{ currentFlag }}</span>
+          <span class="code">{{ lang.toUpperCase() }}</span>
+          <span aria-hidden="true">▾</span>
         </button>
-        <button type="button" (click)="setLang('en')">
-          <span class="flag">🇬🇧</span><span class="lang-name">English</span>
-        </button>
+        <div class="lang-menu">
+          <button type="button" (click)="setLang('de')">
+            <span class="flag">🇩🇪</span><span class="lang-name">Deutsch</span>
+          </button>
+          <button type="button" (click)="setLang('en')">
+            <span class="flag">🇬🇧</span><span class="lang-name">English</span>
+          </button>
+        </div>
       </div>
     </div>
   </nav>
