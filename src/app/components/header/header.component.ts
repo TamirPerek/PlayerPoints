@@ -1,7 +1,8 @@
-import {Component, Input } from '@angular/core';
+import {Component, inject, Input } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterLink} from '@angular/router';
 import {TranslatePipe} from '@ngx-translate/core';
+import {GameService} from '../../services/games';
 import * as Sentry from "@sentry/angular";
 
 @Component({
@@ -16,4 +17,5 @@ export class HeaderComponent {
   @Input() title: string = '';
   @Input() subtitle: string = '';
   @Input() showBackButton: boolean = false;
+  protected readonly game = inject(GameService);
 }

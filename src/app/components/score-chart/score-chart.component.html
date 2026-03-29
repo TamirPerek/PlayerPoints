@@ -1,0 +1,36 @@
+<div class="chart-container">
+  @if (lines.length) {
+    <svg [attr.viewBox]="viewBox" preserveAspectRatio="xMidYMid meet" class="chart-svg">
+      <!-- Grid lines -->
+      @for (gl of gridLines; track gl.label) {
+        <line [attr.x1]="45" [attr.x2]="580" [attr.y1]="gl.y" [attr.y2]="gl.y" class="grid-line" />
+        <text [attr.x]="40" [attr.y]="gl.y + 4" class="axis-label" text-anchor="end">{{ gl.label }}</text>
+      }
+
+      <!-- Round labels -->
+      @for (rl of roundLabels; track rl.label) {
+        <text [attr.x]="rl.x" [attr.y]="290" class="axis-label" text-anchor="middle">{{ rl.label }}</text>
+      }
+
+      <!-- Lines -->
+      @for (line of lines; track line.name) {
+        <path [attr.d]="line.path" [attr.stroke]="line.color" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        @for (pt of line.points; track $index) {
+          <circle [attr.cx]="pt.x" [attr.cy]="pt.y" r="4" [attr.fill]="line.color" />
+          <title>{{ line.name }}: {{ pt.value }}</title>
+        }
+      }
+    </svg>
+
+    <!-- Legend -->
+    <div class="legend">
+      @for (line of lines; track line.name) {
+        <div class="legend-item">
+          <span class="legend-dot" [style.background]="line.color"></span>
+          <span>{{ line.name }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>
+

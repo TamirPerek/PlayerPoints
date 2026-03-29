@@ -5,6 +5,30 @@ header p { margin-top: 0.25rem; color: #ffffff; }
 .card:hover { border-color: #cbd5e1; box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08); transform: translateY(-1px); }
 .card.disabled { opacity: 0.5; pointer-events: none; }
 
+.win-mode-card { padding: 1rem; }
+.win-mode-card h2 { margin: 0 0 0.75rem; }
+.toggle-group { display: flex; gap: 0.5rem; }
+.toggle-btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.toggle-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.toggle-btn:not(.active):hover {
+  border-color: var(--primary);
+}
+
 @media (max-width: 640px) {
   .page { padding: 1rem; gap: 1rem; }
   .card { padding: 0.9rem; }

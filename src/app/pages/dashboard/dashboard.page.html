@@ -18,5 +18,33 @@
       <h2>{{ 'dashboard.results' | translate }}</h2>
       <p>{{ 'dashboard.viewWinner' | translate }}</p>
     </a>
+    <a routerLink="/history" class="card" [class.disabled]="!historyCount()">
+      <h2>{{ 'dashboard.history' | translate }}</h2>
+      <p>{{ 'dashboard.historyCount' | translate:{ count: historyCount() } }}</p>
+    </a>
+  </section>
+
+  <section class="win-mode">
+    <div class="card win-mode-card">
+      <h2>{{ 'dashboard.winMode' | translate }}</h2>
+      <div class="toggle-group">
+        <button
+          type="button"
+          class="toggle-btn"
+          [class.active]="game.winMode === 'lowest'"
+          (click)="toggleWinMode()"
+        >
+          ⬇ {{ 'dashboard.winModeLowest' | translate }}
+        </button>
+        <button
+          type="button"
+          class="toggle-btn"
+          [class.active]="game.winMode === 'highest'"
+          (click)="toggleWinMode()"
+        >
+          ⬆ {{ 'dashboard.winModeHighest' | translate }}
+        </button>
+      </div>
+    </div>
   </section>
 </main>

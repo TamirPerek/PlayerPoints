@@ -13,7 +13,12 @@ import * as Sentry from "@sentry/angular";
   styleUrls: [`./dashboard.page.css`],
 })
 export class DashboardPage {
-  private readonly game = inject(GameService);
+  protected readonly game = inject(GameService);
   protected readonly playerCount = computed(() => this.game.players.length);
   protected readonly roundCount = computed(() => this.game.rounds.length);
+  protected readonly historyCount = computed(() => this.game.history.length);
+
+  toggleWinMode() {
+    this.game.toggleWinMode();
+  }
 }

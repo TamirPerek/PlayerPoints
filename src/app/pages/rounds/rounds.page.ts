@@ -6,13 +6,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardComponent} from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import * as Sentry from "@sentry/angular";
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-rounds-page',
   standalone: true,
-  imports: [FormsModule, CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent, Sentry.TraceModule],
+  imports: [FormsModule, CommonModule, TranslateModule, CardComponent, ButtonComponent, HeaderComponent, ConfirmDialogComponent, Sentry.TraceModule],
   templateUrl: './rounds.page.html',
   styleUrls: ['./rounds.page.css'],
 })
@@ -23,6 +24,23 @@ export class RoundsPage {
   protected editBuffer: Record<string, number> = {};
   protected readonly game = inject(GameService);
   private readonly router = inject(Router);
+  protected confirmVisible = false;
+  protected confirmTitle = '';
+  protected confirmMessage = '';
+  private pendingAction: (() => void) | null = null;
+  protected readonly presetValues = [0, 5, 10, 15, 20, 25, 50];
+
+  increment(playerId: string) {
+    this.scores[playerId] = (this.scores[playerId] ?? 0) + 1;
+  }
+
+  decrement(playerId: string) {
+    this.scores[playerId] = (this.scores[playerId] ?? 0) - 1;
+  }
+
+  setScore(playerId: string, value: number) {
+    this.scores[playerId] = value;
+  }
 
   addRound() {
     this.game.addRound(this.scores);
@@ -37,8 +55,8 @@ export class RoundsPage {
   }
 
   sortedPlayers() {
-    // Niedrigste Punktzahl gewinnt
-    return [...this.game.players].sort((a, b) => (this.totals()[a.id] ?? 0) - (this.totals()[b.id] ?? 0));
+    const dir = this.game.winMode === 'lowest' ? 1 : -1;
+    return [...this.game.players].sort((a, b) => dir * ((this.totals()[a.id] ?? 0) - (this.totals()[b.id] ?? 0)));
   }
 
   toggleEdit(roundId: string) {
@@ -75,15 +93,35 @@ export class RoundsPage {
   }
 
   deleteRound(roundId: string) {
-    this.game.removeRound(roundId);
-    if (this.editingRoundId === roundId) {
-      this.cancelEdit();
-    }
+    this.confirmTitle = 'confirm.title';
+    this.confirmMessage = 'confirm.deleteRound';
+    this.pendingAction = () => {
+      this.game.removeRound(roundId);
+      if (this.editingRoundId === roundId) {
+        this.cancelEdit();
+      }
+    };
+    this.confirmVisible = true;
   }
 
   clearRounds() {
-    this.game.resetRounds();
-    this.cancelEdit();
+    this.confirmTitle = 'confirm.title';
+    this.confirmMessage = 'confirm.deleteRounds';
+    this.pendingAction = () => {
+      this.game.resetRounds();
+      this.cancelEdit();
+    };
+    this.confirmVisible = true;
+  }
+
+  onConfirm() {
+    this.pendingAction?.();
+    this.closeConfirm();
+  }
+
+  closeConfirm() {
+    this.confirmVisible = false;
+    this.pendingAction = null;
   }
 
   partialTotals(index: number): Record<string, number> {

@@ -1,0 +1,60 @@
+<main class="page">
+  <app-header
+    [title]="'history.title' | translate"
+    [subtitle]="'history.subtitle' | translate"
+    [showBackButton]="true">
+  </app-header>
+
+  @if (game.history.length) {
+    <div class="history-actions">
+      <app-button buttonClass="alert" (click)="clearHistory()" (keydown)="clearHistory()">
+        {{ 'history.clearHistory' | translate }}
+      </app-button>
+    </div>
+
+    @for (entry of game.history.slice().reverse(); track entry.id) {
+      <app-card>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-date">{{ formatDate(entry.date) }}</span>
+            <span class="entry-mode">
+              {{ (entry.winMode === 'lowest' ? 'dashboard.winModeLowest' : 'dashboard.winModeHighest') | translate }}
+            </span>
+          </div>
+          <div class="entry-players-list">
+            @for (player of entry.players; track player.id) {
+              <span class="player-chip">{{ player.name }}</span>
+            }
+          </div>
+          @if (entry.winner) {
+            <div class="entry-winner">
+              🏆 {{ 'history.winner' | translate: { name: entry.winner.name, score: entry.winner.score } }}
+            </div>
+          }
+          <div class="entry-details">
+            <span>{{ 'history.roundCount' | translate: { count: entry.rounds.length } }}</span>
+          </div>
+          <div class="entry-action">
+            <app-button buttonClass="secondary" (click)="removeEntry(entry.id)" (keydown)="removeEntry(entry.id)">
+              {{ 'history.delete' | translate }}
+            </app-button>
+          </div>
+        </div>
+      </app-card>
+    }
+  } @else {
+    <app-card>
+      <p class="muted">{{ 'history.empty' | translate }}</p>
+    </app-card>
+  }
+</main>
+
+<app-confirm-dialog
+  [visible]="confirmVisible"
+  [title]="confirmTitle | translate"
+  [message]="confirmMessage | translate"
+  (confirmed)="onConfirm()"
+  (cancelled)="closeConfirm()"
+></app-confirm-dialog>
+
+

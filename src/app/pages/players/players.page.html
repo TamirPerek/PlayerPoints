@@ -17,10 +17,17 @@
 
   @if (game.players.length) {
     <app-card>
-      @for (player of game.players; track player) {
-        <div class="list-row">
+      @for (player of game.players; track player; let i = $index) {
+        <div class="list-row"
+             draggable="true"
+             (dragstart)="onDragStart(i)"
+             (dragover)="onDragOver($event)"
+             (drop)="onDrop($event, i)"
+             (dragend)="onDragEnd()">
+          <span class="drag-handle" title="Drag to reorder">⠿</span>
           @if(editingId !== player.id){
             <div class="row-content">
+              <span class="color-dot" [style.background]="player.color"></span>
               <strong>{{ player.name }}</strong>
             </div>
           } @else {
@@ -50,3 +57,12 @@
   }
 
 </main>
+
+<app-confirm-dialog
+  [visible]="confirmVisible"
+  [title]="confirmTitle | translate"
+  [message]="confirmMessage"
+  (confirmed)="onConfirm()"
+  (cancelled)="closeConfirm()"
+></app-confirm-dialog>
+

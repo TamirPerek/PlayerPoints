@@ -12,7 +12,12 @@
     "rounds": "Runden",
     "roundsCount": "{{count}} Runden erfasst",
     "results": "Ergebnis",
-    "viewWinner": "Aktuellen erstplatzierte Person ansehen"
+    "viewWinner": "Aktuellen erstplatzierte Person ansehen",
+    "history": "Spielverlauf",
+    "historyCount": "{{count}} Spiele gespeichert",
+    "winMode": "Gewinn-Modus",
+    "winModeLowest": "Niedrigste gewinnt",
+    "winModeHighest": "Höchste gewinnt"
   },
   "players": {
     "title": "Spielende",
@@ -38,7 +43,7 @@
     "cancel": "Abbrechen",
     "noPlayers": "Lege zuerst Spielende an.",
     "totalsAfter": "Zwischenstand nach Runde",
-    "finalizeGame" : "Spiel beenden"
+    "finalizeGame": "Spiel beenden"
   },
   "results": {
     "title": "Ergebnis",
@@ -47,6 +52,31 @@
     "winner": "Erstplatzierte Person: {{name}} mit {{score}} Punkten",
     "empty": "Keine Spielenden oder Runden vorhanden.",
     "newGame": "Neues Spiel",
-    "newGameKeepPlayers": "Neues Spiel (Spielende behalten)"
+    "newGameKeepPlayers": "Neues Spiel (Spielende behalten)",
+    "share": "Ergebnis teilen",
+    "copied": "In die Zwischenablage kopiert!",
+    "chart": "Punkteverlauf"
+  },
+  "confirm": {
+    "title": "Bestätigung",
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen",
+    "deleteRound": "Möchtest du diese Runde wirklich löschen?",
+    "deleteRounds": "Möchtest du wirklich alle Runden löschen?",
+    "removePlayer": "Möchtest du diese Person wirklich entfernen?",
+    "newGame": "Möchtest du wirklich ein neues Spiel starten? Alle Daten gehen verloren.",
+    "newGameKeepPlayers": "Möchtest du ein neues Spiel starten? Die Runden werden zurückgesetzt.",
+    "deleteHistoryEntry": "Möchtest du diesen Eintrag aus dem Spielverlauf löschen?",
+    "clearHistory": "Möchtest du den gesamten Spielverlauf löschen?"
+  },
+  "history": {
+    "title": "Spielverlauf",
+    "subtitle": "Vergangene Spiele ansehen.",
+    "players": "Spielende",
+    "winner": "{{name}} mit {{score}} Punkten",
+    "roundCount": "{{count}} Runden",
+    "empty": "Noch keine abgeschlossenen Spiele.",
+    "clearHistory": "Verlauf löschen",
+    "delete": "Löschen"
   }
 }
