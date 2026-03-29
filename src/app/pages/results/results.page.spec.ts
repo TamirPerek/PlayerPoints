@@ -30,13 +30,19 @@ describe('ResultsPage', () => {
   beforeEach(() => {
     mockGame = {
       players: [
-        { id: 'p1', name: 'Alice' },
-        { id: 'p2', name: 'Bob' },
+        { id: 'p1', name: 'Alice', color: '#2563eb' },
+        { id: 'p2', name: 'Bob', color: '#dc2626' },
       ],
       rounds: [],
+      winMode: 'lowest',
+      canUndo: false,
+      canRedo: false,
       getTotalScore: vi.fn((id: string) => (id === 'p1' ? 3 : 5)),
       getWinner: vi.fn(() => ({ player: { id: 'p1', name: 'Alice' }, score: 3 })),
       reset: vi.fn(),
+      resetRounds: vi.fn(),
+      undo: vi.fn(),
+      redo: vi.fn(),
     };
 
     TestBed.configureTestingModule({
@@ -74,9 +80,13 @@ describe('ResultsPage', () => {
     expect(winner).toEqual({ player: { id: 'p1', name: 'Alice' }, score: 3 });
   });
 
-  it('reset should delegate to game service', () => {
+  it('reset should open confirm dialog and delegate to game service on confirm', () => {
     component.reset();
+    expect(component['confirmVisible']).toBe(true);
+    expect(mockGame.reset).not.toHaveBeenCalled();
+    component.onConfirm();
     expect(mockGame.reset).toHaveBeenCalled();
+    expect(component['confirmVisible']).toBe(false);
   });
 });
 

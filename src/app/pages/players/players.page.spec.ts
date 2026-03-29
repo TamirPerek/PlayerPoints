@@ -12,11 +12,15 @@ describe('PlayersPage', () => {
 
   beforeEach(() => {
     mockGame = {
-      players: [{ id: 'p1', name: 'Alice' }],
+      players: [{ id: 'p1', name: 'Alice', color: '#2563eb' }],
       rounds: [],
+      canUndo: false,
+      canRedo: false,
       addPlayer: vi.fn(),
       updatePlayerName: vi.fn(),
       removePlayer: vi.fn(),
+      undo: vi.fn(),
+      redo: vi.fn(),
     };
 
     TestBed.configureTestingModule({
@@ -67,8 +71,13 @@ describe('PlayersPage', () => {
     expect(component['editName']).toBe('');
   });
 
-  it('remove should delegate to GameService', () => {
+  it('remove should open confirm dialog and removePlayer on confirm', () => {
     component.remove('p1');
+    expect(component['confirmVisible']).toBe(true);
+    expect(mockGame.removePlayer).not.toHaveBeenCalled();
+    // Simulate confirm
+    component.onConfirm();
     expect(mockGame.removePlayer).toHaveBeenCalledWith('p1');
+    expect(component['confirmVisible']).toBe(false);
   });
 });

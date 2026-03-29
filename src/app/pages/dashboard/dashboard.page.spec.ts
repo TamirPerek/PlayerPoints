@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DashboardPage } from './dashboard.page';
 import { GameService } from '../../services/games';
+import { vi } from 'vitest';
 import { TranslateNoOpLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('DashboardPage', () => {
@@ -11,8 +12,15 @@ describe('DashboardPage', () => {
 
   beforeEach(() => {
     mockGame = {
-      players: [{ id: 'p1', name: 'A' }],
+      players: [{ id: 'p1', name: 'A', color: '#2563eb' }],
       rounds: [{ id: 'r1', scores: { p1: 1 } }],
+      history: [{ id: 'h1' }],
+      winMode: 'lowest',
+      canUndo: false,
+      canRedo: false,
+      toggleWinMode: vi.fn(),
+      undo: vi.fn(),
+      redo: vi.fn(),
     };
 
     TestBed.configureTestingModule({
@@ -38,5 +46,14 @@ describe('DashboardPage', () => {
 
   it('roundCount should equal GameService rounds length on creation', () => {
     expect(component['roundCount']()).toBe(mockGame.rounds.length);
+  });
+
+  it('historyCount should equal GameService history length', () => {
+    expect(component['historyCount']()).toBe(mockGame.history.length);
+  });
+
+  it('toggleWinMode should delegate to GameService', () => {
+    component.toggleWinMode();
+    expect(mockGame.toggleWinMode).toHaveBeenCalled();
   });
 });
