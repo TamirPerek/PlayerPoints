@@ -45,8 +45,85 @@
   gap: 0.35rem;
 }
 
+.stepper {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.stepper input {
+  flex: 1;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  min-width: 0;
+}
+
+.stepper-btn {
+  width: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  padding: 0;
+}
+
+.stepper-btn:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.stepper-btn:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.stepper-btn:hover {
+  background: var(--border);
+}
+
+.presets {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.preset-btn {
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--fg);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.preset-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
 label {
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
 }
 
 input {

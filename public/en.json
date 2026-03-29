@@ -12,7 +12,12 @@
     "rounds": "Rounds",
     "roundsCount": "{{count}} rounds recorded",
     "results": "Results",
-    "viewWinner": "View current winner"
+    "viewWinner": "View current winner",
+    "history": "History",
+    "historyCount": "{{count}} games saved",
+    "winMode": "Win mode",
+    "winModeLowest": "Lowest wins",
+    "winModeHighest": "Highest wins"
   },
   "players": {
     "title": "Players",
@@ -38,7 +43,7 @@
     "cancel": "Cancel",
     "noPlayers": "Create players first.",
     "totalsAfter": "Totals after round",
-    "finalizeGame" : "Finish game"
+    "finalizeGame": "Finish game"
   },
   "results": {
     "title": "Results",
@@ -47,6 +52,31 @@
     "winner": "Winner: {{name}} with {{score}} points",
     "empty": "No players/rounds available.",
     "newGame": "New game",
-    "newGameKeepPlayers": "New game (keep players)"
+    "newGameKeepPlayers": "New game (keep players)",
+    "share": "Share results",
+    "copied": "Copied to clipboard!",
+    "chart": "Score progression"
+  },
+  "confirm": {
+    "title": "Confirmation",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "deleteRound": "Do you really want to delete this round?",
+    "deleteRounds": "Do you really want to delete all rounds?",
+    "removePlayer": "Do you really want to remove this player?",
+    "newGame": "Do you really want to start a new game? All data will be lost.",
+    "newGameKeepPlayers": "Do you want to start a new game? Rounds will be reset.",
+    "deleteHistoryEntry": "Do you want to delete this entry from the history?",
+    "clearHistory": "Do you want to delete the entire game history?"
+  },
+  "history": {
+    "title": "History",
+    "subtitle": "View past games.",
+    "players": "Players",
+    "winner": "{{name}} with {{score}} points",
+    "roundCount": "{{count}} rounds",
+    "empty": "No completed games yet.",
+    "clearHistory": "Clear history",
+    "delete": "Delete"
   }
 }

@@ -1,5 +1,7 @@
+:host { display: block; }
+
 button {
-  align-self: start;
+  width: 100%;
   padding: 0.6rem 1rem;
   border-radius: 8px;
   border: 1px solid #0f172a;

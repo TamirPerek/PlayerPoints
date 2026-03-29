@@ -14,17 +14,24 @@ describe('RoundsPage', () => {
   beforeEach(() => {
     mockGame = {
       players: [
-        { id: 'p1', name: 'A' },
-        { id: 'p2', name: 'B' },
+        { id: 'p1', name: 'A', color: '#2563eb' },
+        { id: 'p2', name: 'B', color: '#dc2626' },
       ],
       rounds: [
         { id: 'r1', scores: { p1: 1, p2: 2 } },
         { id: 'r2', scores: { p1: 3, p2: 4 } },
       ],
+      winMode: 'lowest',
+      canUndo: false,
+      canRedo: false,
       addRound: vi.fn(),
       updateRoundScores: vi.fn(),
       removeRound: vi.fn(),
       resetRounds: vi.fn(),
+      getWinner: vi.fn(() => null),
+      getTotalScore: vi.fn(() => 0),
+      undo: vi.fn(),
+      redo: vi.fn(),
     };
 
     TestBed.configureTestingModule({
@@ -85,31 +92,71 @@ describe('RoundsPage', () => {
     expect(component['editBuffer']).toEqual({});
   });
 
-  it('deleteRound sollte GameService aufrufen und Edit abbrechen, falls aktiv', () => {
+  it('deleteRound sollte Confirm-Dialog öffnen und nach Bestätigung entfernen und Edit abbrechen', () => {
     component['editingRoundId'] = 'r1';
     component['editBuffer'] = { p1: 1 };
     component.deleteRound('r1');
+    expect(component['confirmVisible']).toBe(true);
+    expect(mockGame.removeRound).not.toHaveBeenCalled();
+    component.onConfirm();
     expect(mockGame.removeRound).toHaveBeenCalledWith('r1');
     expect(component['editingRoundId']).toBeNull();
     expect(component['editBuffer']).toEqual({});
+    expect(component['confirmVisible']).toBe(false);
   });
 
-  it('deleteRound ohne aktiven Edit sollte nur entfernen', () => {
+  it('deleteRound ohne aktiven Edit sollte nach Bestätigung nur entfernen', () => {
     component.deleteRound('r2');
+    expect(component['confirmVisible']).toBe(true);
+    component.onConfirm();
     expect(mockGame.removeRound).toHaveBeenCalledWith('r2');
   });
 
-  it('clearRounds sollte GameService resetten und Edit abbrechen', () => {
+  it('clearRounds sollte Confirm-Dialog öffnen und nach Bestätigung GameService resetten', () => {
     component['editingRoundId'] = 'r1';
     component['editBuffer'] = { p1: 1 };
     component.clearRounds();
+    expect(component['confirmVisible']).toBe(true);
+    expect(mockGame.resetRounds).not.toHaveBeenCalled();
+    component.onConfirm();
     expect(mockGame.resetRounds).toHaveBeenCalled();
     expect(component['editingRoundId']).toBeNull();
     expect(component['editBuffer']).toEqual({});
+    expect(component['confirmVisible']).toBe(false);
   });
 
   it('partialTotals sollte kumulative Scores bis Index liefern', () => {
     const totals = component.partialTotals(1);
     expect(totals).toEqual({ p1: 4, p2: 6 }); // (1+3) und (2+4)
+  });
+
+  it('increment sollte Score um 1 erhöhen', () => {
+    component['scores'] = { p1: 5 };
+    component.increment('p1');
+    expect(component['scores']['p1']).toBe(6);
+  });
+
+  it('increment sollte von 0 starten wenn kein Score vorhanden', () => {
+    component['scores'] = {};
+    component.increment('p1');
+    expect(component['scores']['p1']).toBe(1);
+  });
+
+  it('decrement sollte Score um 1 verringern', () => {
+    component['scores'] = { p1: 5 };
+    component.decrement('p1');
+    expect(component['scores']['p1']).toBe(4);
+  });
+
+  it('setScore sollte Score auf den angegebenen Wert setzen', () => {
+    component['scores'] = {};
+    component.setScore('p1', 25);
+    expect(component['scores']['p1']).toBe(25);
+  });
+
+  it('closeConfirm sollte Dialog schließen', () => {
+    component['confirmVisible'] = true;
+    component.closeConfirm();
+    expect(component['confirmVisible']).toBe(false);
   });
 });

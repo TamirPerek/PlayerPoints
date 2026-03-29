@@ -3,5 +3,11 @@
     <h1>{{ title }}</h1>
     <p>{{ subtitle }}</p>
   </div>
-  <a *ngIf="showBackButton" routerLink="/" class="link">{{'app.back' | translate}}</a>
+  <div class="header-actions">
+    <div class="undo-redo">
+      <button class="icon-btn" type="button" [disabled]="!game.canUndo" (click)="game.undo()" title="Undo">↩</button>
+      <button class="icon-btn" type="button" [disabled]="!game.canRedo" (click)="game.redo()" title="Redo">↪</button>
+    </div>
+    <a *ngIf="showBackButton" routerLink="/" class="link">{{'app.back' | translate}}</a>
+  </div>
 </header>

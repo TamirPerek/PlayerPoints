@@ -10,16 +10,25 @@
       <form class="round-form" (ngSubmit)="addRound()">
         @for (player of game.players; track player) {
           <div class="field">
-            <label [for]="player.id">{{ player.name }}</label>
-            <input
-              type="number"
-              inputmode="text"
-              pattern="-?[0-9]+"
-              [id]="player.id"
-              [(ngModel)]="scores[player.id]"
-              name="score-{{ player.id }}"
-              required
-            />
+            <label [for]="player.id"><span class="color-dot" [style.background]="player.color"></span>{{ player.name }}</label>
+            <div class="stepper">
+              <button type="button" class="stepper-btn" (click)="decrement(player.id)">−</button>
+              <input
+                type="number"
+                inputmode="text"
+                pattern="-?[0-9]+"
+                [id]="player.id"
+                [(ngModel)]="scores[player.id]"
+                name="score-{{ player.id }}"
+                required
+              />
+              <button type="button" class="stepper-btn" (click)="increment(player.id)">+</button>
+            </div>
+            <div class="presets">
+              @for (val of presetValues; track val) {
+                <button type="button" class="preset-btn" (click)="setScore(player.id, val)">{{ val }}</button>
+              }
+            </div>
           </div>
         }
         <app-button type="submit">{{ 'rounds.addRound' | translate }}</app-button>
@@ -44,10 +53,11 @@
             <div class="score-row">
               @if (player.id === this.game.getWinner()?.player?.id) {
                 <div class="winner-name">
+                  <span class="color-dot" [style.background]="player.color"></span>
                   <strong>{{i + 1}}. {{ player.name }}</strong>
                 </div>
               } @else {
-                <div class="player-name">{{i + 1}}. {{ player.name }}</div>
+                <div class="player-name"><span class="color-dot" [style.background]="player.color"></span>{{i + 1}}. {{ player.name }}</div>
               }
               <div class="score-value">{{ totals()[player.id] }}</div>
             </div>
@@ -121,3 +131,12 @@
     </app-card>
   }
 </main>
+
+<app-confirm-dialog
+  [visible]="confirmVisible"
+  [title]="confirmTitle | translate"
+  [message]="confirmMessage | translate"
+  (confirmed)="onConfirm()"
+  (cancelled)="closeConfirm()"
+></app-confirm-dialog>
+
